@@ -1,24 +1,14 @@
 import * as R from 'rodin/core';
+import {DynamicText} from './DynamicText.js';
 
 export class About extends R.Sculpt {
     constructor() {
-        super();
+        const material = new THREE.MeshBasicMaterial({
+            map: R.Loader.loadTexture('/res/img/about.png'),
+            transparent: true
+        });
 
+        super(new THREE.Mesh(new THREE.PlaneGeometry(2, 1.715), material));
         this.position.set(0, 1.6, -3);
-
-        const params = {
-            width: 1.7,
-            text: "Rodin comes with a selection of controls and libraries if they aren`t enough, you can install modules created by members of the Rodin community and third-party vendors",
-            color: 0xffffff,
-            fontFamily: "Arial",
-            fontSize: 0.1,
-        };
-        const text = new R.DynamicText(params);
-
-        this.add(text);
-
-        const plane = new R.Sculpt(new THREE.Mesh(new THREE.PlaneGeometry(2, 1.5), new THREE.MeshBasicMaterial()))
-        plane.position.set(0, 0, -.05);
-        this.add(plane);
     }
 }
