@@ -8,7 +8,7 @@ export class About extends R.Sculpt {
             transparent: true
         });
 
-        super(new THREE.Mesh(new THREE.PlaneGeometry(2, 1.715), material));
+        super(new THREE.Mesh(new THREE.PlaneGeometry(3, 2.609), material));
         this.position.set(0, 1.6, -3);
     }
 }

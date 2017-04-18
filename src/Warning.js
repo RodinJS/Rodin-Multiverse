@@ -25,7 +25,7 @@ export class Warning extends R.Sculpt {
         const listener = (evt) => {
             evt.stopPropagation();
             this.parent = null;
-            R.Scene.active.removeEventListener(R.CONST.GAMEPAD_BUTTON_DOWN, listener)
+            R.Scene.active.removeEventListener(R.CONST.GAMEPAD_BUTTON_DOWN, listener);
             // close modal here
         };
 
