@@ -9,14 +9,33 @@ System.register(['rodin/core', './commitment/commitment.js'], function (_export,
             showModal = _commitmentCommitmentJs.default;
         }],
         execute: function () {
+
+            const listenerAdded = false;
+
             class Warning extends R.Sculpt {
                 constructor() {
                     super();
+
+                    const presentchangeListener = evt => {
+                        // show modal here;
+
+                        // when modal closes, remove this listener
+                        // window.removeEventListener('vrdisplaypresentchange', presentchangeListener);
+                    };
+
+                    if (R.Scene.webVRmanager.hmd && R.Scene.webVRmanager.hmd.isPresenting) {
+                        if (!listenerAdded) {
+                            window.addEventListener('vrdisplaypresentchange', presentchangeListener);
+                        }
+                    } else {
+                        // show modal here
+                    }
 
                     const listener = evt => {
                         evt.stopPropagation();
                         this.parent = null;
                         R.Scene.active.removeEventListener(R.CONST.GAMEPAD_BUTTON_DOWN, listener);
+                        // close modal here
                     };
 
                     R.Scene.active.on(R.CONST.GAMEPAD_BUTTON_DOWN, listener);

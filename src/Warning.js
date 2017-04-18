@@ -1,13 +1,35 @@
 import * as R from 'rodin/core';
-import showModal from './commitment/commitment.js';
+import { showModal } from './commitment/commitment.js';
+
+
+const listenerAdded = false;
+
 export class Warning extends R.Sculpt {
     constructor() {
         super();
+
+        const presentchangeListener = (evt) => {
+            showModal(true);
+
+            // when modal closes, remove this listener
+            // window.removeEventListener('vrdisplaypresentchange', presentchangeListener);
+        };
+
+        if (R.Scene.webVRmanager.hmd && R.Scene.webVRmanager.hmd.isPresenting) {
+            if (!listenerAdded) {
+                window.addEventListener('vrdisplaypresentchange', presentchangeListener)
+            }
+        } else {
+            showModal(true);
+            // show modal here
+        }
 
         const listener = (evt) => {
             evt.stopPropagation();
             this.parent = null;
             R.Scene.active.removeEventListener(R.CONST.GAMEPAD_BUTTON_DOWN, listener)
+            showModal(false);
+            // close modal here
         };
 
         R.Scene.active.on(R.CONST.GAMEPAD_BUTTON_DOWN, listener);
