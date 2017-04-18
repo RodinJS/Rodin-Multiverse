@@ -1,35 +1,15 @@
 import * as R from 'rodin/core';
 
-const listenerAdded = false;
-
+let listenerAdded = false;
+let instance = null;
 
 export class Warning extends R.Sculpt {
     constructor() {
         super();
-        
-        const presentchangeListener = (evt) => {
-            // show modal here;
 
-            // when modal closes, remove this listener
-            // window.removeEventListener('vrdisplaypresentchange', presentchangeListener);
-        };
-
-        if (R.Scene.webVRmanager.hmd && R.Scene.webVRmanager.hmd.isPresenting) {
-            if(!listenerAdded) {
-                window.addEventListener('vrdisplaypresentchange', presentchangeListener)
-            }
-        } else {
-            // show modal here
-        }
-
-        const listener = (evt) => {
-            evt.stopPropagation();
+        R.Scene.active.on(R.CONST.GAMEPAD_BUTTON_DOWN, () => {
             this.parent = null;
-            R.Scene.active.removeEventListener(R.CONST.GAMEPAD_BUTTON_DOWN, listener);
-            // close modal here
-        };
-
-        R.Scene.active.on(R.CONST.GAMEPAD_BUTTON_DOWN, listener);
+        });
 
         const messageMaterial = new THREE.MeshBasicMaterial({
             side: THREE.DoubleSide,
@@ -41,5 +21,29 @@ export class Warning extends R.Sculpt {
         message.position.set(1.5, 1.6, 0);
         message.rotation.y = -Math.PI / 2;
         this.add(message);
+    }
+
+    static getInstance() {
+        if(!instance) {
+            instance = new Warning();
+        }
+
+        const presentchangeListener = (evt) => {
+            // show modal here;
+
+            // when modal closes, remove this listener
+            // window.removeEventListener('vrdisplaypresentchange', presentchangeListener);
+        };
+
+        if (R.Scene.webVRmanager.hmd && R.Scene.webVRmanager.hmd.isPresenting) {
+            if(!listenerAdded) {
+                window.addEventListener('vrdisplaypresentchange', presentchangeListener);
+                listenerAdded = true;
+            }
+        } else {
+            // show modal here
+        }
+
+        return instance;
     }
 }

@@ -1,5 +1,6 @@
 import * as R from 'rodin/core';
 import {Warning} from './Warning.js';
+import {father} from './Father.js';
 
 export class Earth extends R.Sculpt {
     constructor() {
@@ -19,9 +20,20 @@ export class Earth extends R.Sculpt {
 
         const eventHandler = new R.Sphere(.9, new THREE.MeshBasicMaterial({transparent: true, opacity: 0, side: THREE.DoubleSide}));
         this.add(eventHandler);
+
+        let lastDown = R.Time.now;
         eventHandler.on(R.CONST.GAMEPAD_BUTTON_DOWN, (evt) => {
-            const warning = new Warning();
-            R.Scene.add(warning);
+            lastDown = R.Time.now;
+            const warning = Warning.getInstance();
+            father.add(warning);
+        });
+
+        eventHandler.on(R.CONST.GAMEPAD_BUTTON_UP, (evt) => {
+            if(R.Time.now - lastDown > 400)
+                return;
+
+            const warning = Warning.getInstance();
+            father.add(warning);
         });
 
         const pulseMaterial = new THREE.MeshBasicMaterial({
