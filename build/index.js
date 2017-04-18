@@ -20,7 +20,7 @@ System.register(['rodin/core', './SkySphere.js', './Earth.js', './Father.js', '.
             R.Scene.active._scene.remove(R.Scene.active._scene.children.filter(i => i.type === "AmbientLight")[0]);
 
             R.Scene.add(father);
-
+            showModal(true);
             const skySphere = new SkySphere();
             father.add(skySphere);
 

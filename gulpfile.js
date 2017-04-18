@@ -20,7 +20,7 @@ const ERROR_MESSAGE = {
 };
 
 gulp.task('js', () => {
-    const s = size({title: 'JS -> ', pretty: true});
+    const s = size({ title: 'JS -> ', pretty: true });
     return gulp.src(JS)
         .pipe(plumber(ERROR_MESSAGE))
         .pipe(babel())
@@ -43,7 +43,9 @@ gulp.task('clean', () => {
 });
 
 gulp.task('connect', () => {
-
+    connect.server({
+        port: 3030
+    })
 });
 
 gulp.task('default', (done) => {

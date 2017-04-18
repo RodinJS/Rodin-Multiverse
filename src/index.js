@@ -3,13 +3,13 @@ import * as R from 'rodin/core';
 R.start();
 R.Scene.active._scene.remove(R.Scene.active._scene.children.filter(i => i.type === "AmbientLight")[0]);
 
-import {SkySphere} from './SkySphere.js';
-import {Earth} from './Earth.js';
-import {father} from './Father.js';
-import {About} from './About.js';
+import { SkySphere } from './SkySphere.js';
+import { Earth } from './Earth.js';
+import { father } from './Father.js';
+import { About } from './About.js';
 
 R.Scene.add(father);
-
+showModal(true);
 const skySphere = new SkySphere();
 father.add(skySphere);
 
