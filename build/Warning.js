@@ -6,7 +6,7 @@ System.register(['rodin/core', './commitment/commitment.js'], function (_export,
         setters: [function (_rodinCore) {
             R = _rodinCore;
         }, function (_commitmentCommitmentJs) {
-            showModal = _commitmentCommitmentJs.default;
+            showModal = _commitmentCommitmentJs.showModal;
         }],
         execute: function () {
 
@@ -17,10 +17,12 @@ System.register(['rodin/core', './commitment/commitment.js'], function (_export,
                     super();
 
                     const presentchangeListener = evt => {
-                        // show modal here;
-
+                        showModal(true);
+                        document.addEventListener('modalClose', function (e) {
+                            console.log(e);
+                            if (e.type === 'modalClose') {}
+                        }, false);
                         // when modal closes, remove this listener
-                        // window.removeEventListener('vrdisplaypresentchange', presentchangeListener);
                     };
 
                     if (R.Scene.webVRmanager.hmd && R.Scene.webVRmanager.hmd.isPresenting) {
@@ -28,13 +30,14 @@ System.register(['rodin/core', './commitment/commitment.js'], function (_export,
                             window.addEventListener('vrdisplaypresentchange', presentchangeListener);
                         }
                     } else {
-                        // show modal here
+                        showModal(true);
                     }
 
                     const listener = evt => {
                         evt.stopPropagation();
                         this.parent = null;
                         R.Scene.active.removeEventListener(R.CONST.GAMEPAD_BUTTON_DOWN, listener);
+                        // showModal(false);
                         // close modal here
                     };
 
@@ -50,6 +53,7 @@ System.register(['rodin/core', './commitment/commitment.js'], function (_export,
                     message.position.set(1.5, 1.6, 0);
                     message.rotation.y = -Math.PI / 2;
                     this.add(message);
+                    showModal(true);
                 }
             }
 

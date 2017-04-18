@@ -1,116 +1,134 @@
- @font-face {
-     font-family: Roboto;
-     src: url(../fonts/Roboto-Regular.ttf);
- }
- 
- @font-face {
-     font-family: RobotoBold;
-     src: url(../fonts/Roboto-Bold.ttf);
- }
- 
- .modal1 {
-     display: none;
-     width: 100%;
-     height: 100%;
-     background: black;
-     position: absolute;
-     opacity: 0.8;
-     z-index: 2;
- }
- 
- .form-wrapper {
-     left: calc(50% - 260.5px);
-     top: calc(50% - 240px);
-     height: 480px;
-     width: 521px;
-     text-align: center;
-     position: absolute;
-     z-index: 100
- }
- 
- .title {
-     margin-top: 15px;
-     font-family: RobotoBold;
-     color: #008BF2;
-     font-size: 24px;
- }
- 
- .form-content {
-     padding: 20px;
- }
- 
- .form-background {
-     height: 100%;
-     width: 100%;
-     display: block;
-     background: #09192E;
-     opacity: 0.85;
-     position: absolute;
-     z-index: -1;
-     border-radius: 20px;
- }
- 
- .form-group {
-     width: 100%;
-     padding-bottom: 2px;
- }
- 
- .email-input {
-     padding-bottom: 30px;
- }
- 
- input[type=text],
- input[type=email] {
-     font-family: Roboto;
-     background: #09192E;
-     width: 100%;
-     color: #008BF2;
-     /*padding: 8px;*/
-     font-size: 21px;
-     padding: 14px;
-     margin: 8px 0;
-     display: inline-block;
-     border: none;
-     border-radius: 4px;
-     box-sizing: border-box;
-     caret-color: #008BF2;
- }
- 
- input::-webkit-input-placeholder {
-     color: #0F4596;
-     font-size: 21px;
-     -webkit-text-fill-color: initial;
- }
- 
- label {
-     font-size: 18px;
-     margin-bottom: 6px;
-     text-align: left;
-     font-family: Roboto;
-     color: #008BF2;
-     display: block;
- }
- 
- .button-area {
-     margin-top: 30px;
- }
- 
- .button-submit:focus {
-     outline: none;
- }
- 
- .button-submit {
-     font-family: Roboto;
-     font-size: 20px;
-     border: none;
-     padding: 16px 51.5px;
-     border-radius: 28px;
-     background: #008BF2;
-     color: #09192E;
-     transition: 0.3s ease;
- }
- 
- .button-submit:hover {
-     color: white;
-     background: #054071;
- }
+     @font-face {
+         font-family: Roboto;
+         src: url(../fonts/Roboto-Regular.ttf);
+     }
+     
+     @font-face {
+         font-family: RobotoBold;
+         src: url(../fonts/Roboto-Bold.ttf);
+     }
+     
+     @media only screen and (orientation: landscape) and (min-width: 320px) and (max-width: 1024px) {
+         .form-wrapper {
+             width: 100% !important;
+             height: 100%;
+             margin: 0 !important;
+         }
+     }
+     
+     @media only screen and (orientation: portrait) and (min-width: 320px) and (max-width: 1024px) {
+         .form-wrapper {
+             width: 100% !important;
+             height: 100%;
+             margin: 0 !important;
+         }
+     }
+     
+     .modal1 {
+         display: none;
+         width: 100%;
+         height: 100%;
+         background: black;
+         position: fixed;
+         top: 0;
+         left: 0;
+         overflow: auto;
+         /*opacity: 0.8;*/
+         /*z-index: 2;*/
+     }
+     
+     .form-wrapper {
+         width: 35%;
+         text-align: center;
+         position: absolute;
+         margin: 5% 33%;
+         z-index: 100;
+         display: block;
+     }
+     
+     .title {
+         margin-top: 15px;
+         font-family: RobotoBold;
+         color: #008BF2;
+         font-size: 24px;
+     }
+     
+     .form-content {
+         padding: 20px;
+     }
+     
+     .form-background {
+         height: 100%;
+         width: 100%;
+         display: block;
+         background: #09192E;
+         opacity: 0.85;
+         position: absolute;
+         z-index: -1;
+         border-radius: 20px;
+     }
+     
+     .form-group1 {
+         width: 100%;
+         padding-bottom: 2px;
+     }
+     
+     .email-input {
+         padding-bottom: 30px;
+     }
+     
+     input[type=text],
+     input[type=email] {
+         font-family: Roboto;
+         background: #000A11;
+         width: 100%;
+         color: #008BF2;
+         /*padding: 8px;*/
+         font-size: 21px;
+         padding: 14px;
+         margin: 8px 0;
+         display: inline-block;
+         border: none;
+         border-radius: 4px;
+         box-sizing: border-box;
+         caret-color: #008BF2;
+     }
+     
+     input::-webkit-input-placeholder {
+         color: #0F4596;
+         font-size: 21px;
+         -webkit-text-fill-color: initial;
+     }
+     
+     label {
+         font-size: 18px;
+         margin-bottom: 6px;
+         text-align: left;
+         font-family: Roboto;
+         color: #008BF2;
+         display: block;
+     }
+     
+     .button-area {
+         margin-top: 30px;
+     }
+     
+     .button-submit:focus {
+         outline: none;
+     }
+     
+     .button-submit {
+         font-family: Roboto;
+         font-size: 20px;
+         border: none;
+         padding: 16px 51.5px;
+         border-radius: 28px;
+         background: #008BF2;
+         color: #09192E;
+         transition: 0.3s ease;
+     }
+     
+     .button-submit:hover {
+         color: white;
+         background: #054071;
+     }

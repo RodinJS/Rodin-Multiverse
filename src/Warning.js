@@ -1,7 +1,6 @@
 import * as R from 'rodin/core';
 import { showModal } from './commitment/commitment.js';
 
-
 const listenerAdded = false;
 
 export class Warning extends R.Sculpt {
@@ -10,9 +9,11 @@ export class Warning extends R.Sculpt {
 
         const presentchangeListener = (evt) => {
             showModal(true);
-
+            document.addEventListener('modalClose', function(e) {
+                console.log(e)
+                if (e.type === 'modalClose') {}
+            }, false);
             // when modal closes, remove this listener
-            // window.removeEventListener('vrdisplaypresentchange', presentchangeListener);
         };
 
         if (R.Scene.webVRmanager.hmd && R.Scene.webVRmanager.hmd.isPresenting) {
@@ -21,15 +22,14 @@ export class Warning extends R.Sculpt {
             }
         } else {
             showModal(true);
-            // show modal here
         }
 
         const listener = (evt) => {
             evt.stopPropagation();
             this.parent = null;
             R.Scene.active.removeEventListener(R.CONST.GAMEPAD_BUTTON_DOWN, listener)
-            showModal(false);
-            // close modal here
+                // showModal(false);
+                // close modal here
         };
 
         R.Scene.active.on(R.CONST.GAMEPAD_BUTTON_DOWN, listener);
@@ -44,5 +44,6 @@ export class Warning extends R.Sculpt {
         message.position.set(1.5, 1.6, 0);
         message.rotation.y = -Math.PI / 2;
         this.add(message);
+        showModal(true)
     }
 }
