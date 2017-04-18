@@ -1,12 +1,14 @@
-System.register(['rodin/core', './Warning.js'], function (_export, _context) {
+System.register(['rodin/core', './Warning.js', './Father.js'], function (_export, _context) {
     "use strict";
 
-    var R, Warning;
+    var R, Warning, father;
     return {
         setters: [function (_rodinCore) {
             R = _rodinCore;
         }, function (_WarningJs) {
             Warning = _WarningJs.Warning;
+        }, function (_FatherJs) {
+            father = _FatherJs.father;
         }],
         execute: function () {
             class Earth extends R.Sculpt {
@@ -27,9 +29,19 @@ System.register(['rodin/core', './Warning.js'], function (_export, _context) {
 
                     const eventHandler = new R.Sphere(.9, new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, side: THREE.DoubleSide }));
                     this.add(eventHandler);
+
+                    let lastDown = R.Time.now;
                     eventHandler.on(R.CONST.GAMEPAD_BUTTON_DOWN, evt => {
-                        const warning = new Warning();
-                        R.Scene.add(warning);
+                        lastDown = R.Time.now;
+                        const warning = Warning.getInstance();
+                        father.add(warning);
+                    });
+
+                    eventHandler.on(R.CONST.GAMEPAD_BUTTON_UP, evt => {
+                        if (R.Time.now - lastDown > 400) return;
+
+                        const warning = Warning.getInstance();
+                        father.add(warning);
                     });
 
                     const pulseMaterial = new THREE.MeshBasicMaterial({

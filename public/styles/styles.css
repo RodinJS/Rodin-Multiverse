@@ -24,6 +24,10 @@
          }
      }
      
+     .message {
+         text-align: center;
+     }
+     
      .modal1 {
          display: none;
          width: 100%;

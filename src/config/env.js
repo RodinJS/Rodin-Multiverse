@@ -1,8 +1,8 @@
 export const env = {
     local: {
-        base: 'http://127.0.0.1:3000/api/user/metaverse'
+        base: 'http://localhost:3000/api/user/metaverse'
     },
     dev: {
-        base: ''
+        base: 'https://api.rodin.io/api/user/metaverse'
     }
 }

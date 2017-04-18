@@ -1,13 +1,30 @@
-System.register(["../config/env.js"], function (_export, _context) {
+System.register(['../config/env.js'], function (_export, _context) {
     "use strict";
 
     var env;
 
 
-    function request(method) {
+    function showMessage(message) {
+        let messagepanel = document.getElementsByClassName('message')[0];
+        messagepanel.innerHTML = `<h1>${message}</h1>`;
+        setTimeout(() => {
+            messagepanel.style.display = "none";
+        }, 3000);
+    }
+
+
+    function request(method, data) {
         return new Promise((resolve, reject) => {
             let request = new XMLHttpRequest();
-            request.open(method, env.local.base);
+            let encodStr = [];
+            for (let p in data) {
+                if (data.hasOwnProperty(p)) {
+                    encodStr.push(encodeURIComponent(p) + "=" + encodeURIComponent(data[p]));
+                }
+            }
+            let body = encodStr.join('&');
+            request.open(method, env.dev.base);
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             request.onload = function () {
                 if (this.status >= 200 && this.status < 300) {
                     resolve(request.response);
@@ -24,7 +41,7 @@ System.register(["../config/env.js"], function (_export, _context) {
                     statusText: request.statusText
                 });
             };
-            request.send();
+            request.send(body);
         });
     }
 
@@ -34,32 +51,36 @@ System.register(["../config/env.js"], function (_export, _context) {
         if (!emailReg.test(form['email'].value) || form['name'].value == "" || !Number(form['commitment'].value)) {
             return false;
         }
-        return true;
+        return {
+            email: form.email.value,
+            first_name: form.name.value,
+            price: form.commitment.value
+        };
     }
 
     function showModal(bool = false) {
         let modal = document.getElementById('modal-commitment');
-        if (!bool) {
-            var event = new Event('modalClose');
-            // Вызываем событие
-            document.dispatchEvent(event);
-        }
         return bool ? modal.style.display = "block" : modal.style.display = "none";
     }
 
-    _export("showModal", showModal);
+    _export('showModal', showModal);
 
     return {
         setters: [function (_configEnvJs) {
             env = _configEnvJs.env;
         }],
         execute: function () {
-
             window.submitCommitment = function () {
                 if (validateForm()) {
-                    request("POST").then(res => {
+                    request("POST", validateForm()).then(res => {
                         showModal(false);
-                    }, err => showModal(false));
+                        showMessage('Thank You !!');
+                    }, err => {
+                        showModal(false);
+                        showMessage(`Ops !
+                            Something went wrong.Please
+                            try again later `);
+                    });
                 }
             };
         }

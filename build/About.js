@@ -16,7 +16,7 @@ System.register(['rodin/core', './DynamicText.js'], function (_export, _context)
                         transparent: true
                     });
 
-                    super(new THREE.Mesh(new THREE.PlaneGeometry(2, 1.715), material));
+                    super(new THREE.Mesh(new THREE.PlaneGeometry(3, 2.609), material));
                     this.position.set(0, 1.6, -3);
                 }
             }
