@@ -7,9 +7,27 @@ System.register(['rodin/core'], function (_export, _context) {
             R = _rodinCore;
         }],
         execute: function () {
+
+            const listenerAdded = false;
+
             class Warning extends R.Sculpt {
                 constructor() {
                     super();
+
+                    const presentchangeListener = evt => {
+                        // show modal here;
+
+                        // when modal closes, remove this listener
+                        // window.removeEventListener('vrdisplaypresentchange', presentchangeListener)
+                    };
+
+                    if (R.Scene.webVRmanager.hmd && R.Scene.webVRmanager.hmd.isPresenting) {
+                        if (!listenerAdded) {
+                            window.addEventListener('vrdisplaypresentchange', presentchangeListener);
+                        }
+                    } else {
+                        // show modal here
+                    }
 
                     const listener = evt => {
                         evt.stopPropagation();
