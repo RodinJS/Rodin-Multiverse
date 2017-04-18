@@ -9,7 +9,6 @@ import { father } from './Father.js';
 import { About } from './About.js';
 
 R.Scene.add(father);
-showModal(true);
 const skySphere = new SkySphere();
 father.add(skySphere);
 
