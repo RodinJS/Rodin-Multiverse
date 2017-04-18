@@ -18,7 +18,7 @@ System.register(['rodin/core'], function (_export, _context) {
                         // show modal here;
 
                         // when modal closes, remove this listener
-                        // window.removeEventListener('vrdisplaypresentchange', presentchangeListener)
+                        // window.removeEventListener('vrdisplaypresentchange', presentchangeListener);
                     };
 
                     if (R.Scene.webVRmanager.hmd && R.Scene.webVRmanager.hmd.isPresenting) {
@@ -33,6 +33,7 @@ System.register(['rodin/core'], function (_export, _context) {
                         evt.stopPropagation();
                         this.parent = null;
                         R.Scene.active.removeEventListener(R.CONST.GAMEPAD_BUTTON_DOWN, listener);
+                        // close modal here
                     };
 
                     R.Scene.active.on(R.CONST.GAMEPAD_BUTTON_DOWN, listener);
