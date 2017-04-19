@@ -71,8 +71,13 @@ export class About extends R.Sculpt {
         });
 
         this.started = false;
-        less.on(R.CONST.ANIMATION_COMPLETE, () => {
+        less.on(R.CONST.ANIMATION_COMPLETE, (evt) => {
             this.started = false;
+            if(evt.animation === 'fadein') {
+                this.remove(more);
+            } else {
+                this.remove(less);
+            }
         })
     }
 
@@ -82,10 +87,12 @@ export class About extends R.Sculpt {
             return;
 
         if (this.mode === 'less') {
+            this.add(this.more);
             this.more.animation.start('fadein');
             this.less.animation.start('fadeout');
             this.mode = 'more';
         } else {
+            this.add(this.less);
             this.less.animation.start('fadein');
             this.more.animation.start('fadeout');
             this.mode = 'less';
