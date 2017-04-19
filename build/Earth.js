@@ -14,7 +14,7 @@ System.register(['rodin/core', './Warning.js', './Father.js'], function (_export
             class Earth extends R.Sculpt {
                 constructor() {
                     super();
-                    const globe = new R.Sculpt('/res/models/earth/earth.obj');
+                    const globe = new R.Sculpt('/metaverse/res/models/earth/earth.obj');
                     globe.on(R.CONST.READY, () => {
                         this.add(globe);
                     });
@@ -46,7 +46,7 @@ System.register(['rodin/core', './Warning.js', './Father.js'], function (_export
 
                     const pulseMaterial = new THREE.MeshBasicMaterial({
                         side: THREE.DoubleSide,
-                        map: R.Loader.loadTexture('/res/img/pulse.png'),
+                        map: R.Loader.loadTexture('/metaverse/res/img/pulse.png'),
                         transparent: true
                     });
 

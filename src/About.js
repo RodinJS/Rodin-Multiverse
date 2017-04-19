@@ -4,7 +4,7 @@ import {DynamicText} from './DynamicText.js';
 export class About extends R.Sculpt {
     constructor() {
         const material = new THREE.MeshBasicMaterial({
-            map: R.Loader.loadTexture('/res/img/about.png'),
+            map: R.Loader.loadTexture('/metaverse/res/img/about.png'),
             transparent: true
         });
 
