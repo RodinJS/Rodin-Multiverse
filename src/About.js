@@ -4,21 +4,27 @@ import {DynamicText} from './DynamicText.js';
 const fadeInAnimation = new R.AnimationClip('fadein', {
     _threeObject: {
         material: {
-            opacity: 1
+            opacity: {
+                from: 0,
+                to: 1
+            }
         }
     }
 });
-fadeInAnimation.duration(1000);
+fadeInAnimation.duration(500);
 
 
 const fadeOutAnimation = new R.AnimationClip('fadeout', {
     _threeObject: {
         material: {
-            opacity: 0
+            opacity: {
+                from: 1,
+                to: 0
+            }
         }
     }
 });
-fadeOutAnimation.duration(1000);
+fadeOutAnimation.duration(500);
 
 export class About extends R.Sculpt {
     constructor() {
@@ -28,7 +34,7 @@ export class About extends R.Sculpt {
             transparent: true,
             opacity: 1
         });
-        const less = new R.Sculpt(new THREE.Mesh(new THREE.PlaneGeometry(3, 1.8675), lessMaterial));
+        const less = new R.Sculpt(new THREE.Mesh(new THREE.PlaneGeometry(3.5, 2.17875), lessMaterial));
         this.add(less);
         less.position.set(0, 1.6, -3);
         this.less = less;
@@ -39,7 +45,7 @@ export class About extends R.Sculpt {
             opacity: 0
         });
 
-        const more = new R.Sculpt(new THREE.Mesh(new THREE.PlaneGeometry(3, 2.784), moreMaterial));
+        const more = new R.Sculpt(new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.248), moreMaterial));
         this.add(more);
         more.position.set(0, 1.6, -3);
         this.more = more;
@@ -51,14 +57,27 @@ export class About extends R.Sculpt {
         this.mode = 'less';
 
         more.on(R.CONST.GAMEPAD_BUTTON_DOWN, () => {
+            if(this.started)
+                return;
+
             this.toggle();
         });
+
         less.on(R.CONST.GAMEPAD_BUTTON_DOWN, () => {
+            if(this.started)
+                return;
+
             this.toggle();
         });
+
+        this.started = false;
+        less.on(R.CONST.ANIMATION_COMPLETE, () => {
+            this.started = false;
+        })
     }
 
     toggle() {
+        this.started = true;
         if (this.more.animation.isPlaying() || this.less.animation.isPlaying())
             return;
 
