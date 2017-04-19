@@ -94,9 +94,9 @@ System.register(['rodin/core', './DynamicText.js'], function (_export, _context)
                     less.on(R.CONST.ANIMATION_COMPLETE, evt => {
                         this.started = false;
                         if (evt.animation === 'fadein') {
-                            this.remove(more);
+                            more.visible = false;
                         } else {
-                            this.remove(less);
+                            less.visible = false;
                         }
                     });
                 }
@@ -106,12 +106,12 @@ System.register(['rodin/core', './DynamicText.js'], function (_export, _context)
                     if (this.more.animation.isPlaying() || this.less.animation.isPlaying()) return;
 
                     if (this.mode === 'less') {
-                        this.add(this.more);
+                        this.more.visible = true;
                         this.more.animation.start('fadein');
                         this.less.animation.start('fadeout');
                         this.mode = 'more';
                     } else {
-                        this.add(this.less);
+                        this.less.visible = true;
                         this.less.animation.start('fadein');
                         this.more.animation.start('fadeout');
                         this.mode = 'less';
