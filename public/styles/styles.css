@@ -38,6 +38,7 @@
 
 #messages {
     display: none;
+    text-align: center;
 }
 
 .message {
@@ -101,7 +102,7 @@
 }
 
 .error {
-    border: 1px solid red;
+    border: 1px solid red !important;
 }
 
 input[type=text],
@@ -142,9 +143,11 @@ label {
     height: 100%;
 }
 .message-text {
-    padding: 33% 30px;
     color: #008BF2;
-    font-weight: 600;
+    vertical-align: middle;
+    font-size: 24px;
+    padding-top: 32%;
+    line-height: 36px;
 }
 
 .button-area {
@@ -187,8 +190,10 @@ label {
         margin:13% 33%;
     }
     .message-text {
-        padding: 25% 30px;
         color: #008BF2;
-        font-weight: 600;
+        vertical-align: middle;
+        font-size: 24px;
+        padding-top: 32%;
+        line-height: 36px;
     }
 }

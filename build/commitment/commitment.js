@@ -47,7 +47,11 @@ System.register(['../config/env.js'], function (_export, _context) {
     function validateForm() {
         let form = document.forms["metaverseForm"];
         let emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!emailReg.test(form['email'].value) || form['name'].value === "") {
+        if (!emailReg.test(form['email'].value)) {
+            form.email.className += "error";
+            if (form['name'].value === "") {
+                form.name.className += "error";
+            }
             return false;
         }
         let obj = Object.assign({}, {
@@ -56,7 +60,7 @@ System.register(['../config/env.js'], function (_export, _context) {
         });
         setTimeout(() => {
             form.reset();
-        }, 1000);
+        }, 3000);
         return obj;
     }
 
@@ -78,9 +82,7 @@ System.register(['../config/env.js'], function (_export, _context) {
                     request("POST", validateForm()).then(res => {
                         showMessage('THANK YOU!');
                     }, err => {
-                        showMessage(`Ops !
-                            Something went wrong.Please
-                            try again later `);
+                        showMessage(`PLEASE CHECK YOUR CONNECTION AND TRY AGAIN`);
                     });
                 }
             };

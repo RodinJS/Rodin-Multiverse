@@ -90,6 +90,9 @@
         document.getElementById('modal-commitment').style.display = "none";
         document.getElementById('messages').style.display = "none";
         document.getElementsByClassName('form-content')[0].style.display = "block";
+        var form = document.forms["metaverseForm"];
+        form.email.className = "";
+        form.name.className = "";
     }
 </script>
 </body>
