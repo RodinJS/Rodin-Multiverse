@@ -19,7 +19,7 @@ export class Warning extends R.Sculpt {
         });
 
         const message = new R.Sculpt(new THREE.Mesh(new THREE.PlaneGeometry(2, 1.33), messageMaterial));
-        message.position.set(1.5, 1.6, 0);
+        message.position.set(0, 1.6, -1.5);
         this.add(message);
     }
 
