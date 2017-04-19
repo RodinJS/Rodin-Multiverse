@@ -60,7 +60,7 @@ export class About extends R.Sculpt {
         more.on(R.CONST.GAMEPAD_BUTTON_DOWN, () => {
             this.lastClicked = R.Time.now;
         });
-        more.position.z = .01;
+        more.position.z += .01;
 
         more.on(R.CONST.GAMEPAD_BUTTON_UP, () => {
             if(R.Time.now - this.lastClicked > 300)
