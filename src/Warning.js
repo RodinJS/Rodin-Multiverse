@@ -1,5 +1,6 @@
 import * as R from 'rodin/core';
 import { showModal } from './commitment/commitment.js';
+import {father} from './Father.js';
 
 let listenerAdded = false;
 let instance = null;
@@ -9,7 +10,7 @@ export class Warning extends R.Sculpt {
         super();
 
         R.Scene.active.on(R.CONST.GAMEPAD_BUTTON_DOWN, () => {
-            this.parent = null;
+            father.remove(this);
         });
 
         const messageMaterial = new THREE.MeshBasicMaterial({

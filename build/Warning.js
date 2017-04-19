@@ -1,12 +1,14 @@
-System.register(['rodin/core', './commitment/commitment.js'], function (_export, _context) {
+System.register(['rodin/core', './commitment/commitment.js', './Father.js'], function (_export, _context) {
     "use strict";
 
-    var R, showModal;
+    var R, showModal, father;
     return {
         setters: [function (_rodinCore) {
             R = _rodinCore;
         }, function (_commitmentCommitmentJs) {
             showModal = _commitmentCommitmentJs.showModal;
+        }, function (_FatherJs) {
+            father = _FatherJs.father;
         }],
         execute: function () {
 
@@ -18,7 +20,7 @@ System.register(['rodin/core', './commitment/commitment.js'], function (_export,
                     super();
 
                     R.Scene.active.on(R.CONST.GAMEPAD_BUTTON_DOWN, () => {
-                        this.parent = null;
+                        father.remove(this);
                     });
 
                     const messageMaterial = new THREE.MeshBasicMaterial({
