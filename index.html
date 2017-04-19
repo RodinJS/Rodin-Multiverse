@@ -42,11 +42,14 @@
 <!--}-->
 <!--</script>-->
 <div class="modal1" id="modal-commitment">
+    <div class="modal-background"></div>
     <div class="form-wrapper">
         <div class="form-background"></div>
+        <span class="close-x" style="" onclick="closeModal();">X</span>
         <div class="form-content">
             <div class="title">
-                <span>STAKE YOUR CLAIM</span>
+                <span style="margin-bottom: 20px;">Grab some VR land space and join us in building the future of the Metaverse!</span>
+                <br>
             </div>
             <form id="metaverseForm" name="metaverse_form">
                 <div class="form-group1">
@@ -60,9 +63,8 @@
                 </div>
             </form>
         </div>
-        <div class="message">
+        <div class="message" id="messages">
             <h1 class="message-text"></h1>
-            <button type="button" onclick="closeModal();" class="button-close">Close</button>
         </div>
     </div>
 </div>
@@ -86,6 +88,8 @@
 <script>
     window.closeModal = function () {
         document.getElementById('modal-commitment').style.display = "none";
+        document.getElementById('messages').style.display = "none";
+        document.getElementsByClassName('form-content')[0].style.display = "block";
     }
 </script>
 </body>

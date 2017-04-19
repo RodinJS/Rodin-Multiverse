@@ -4,7 +4,7 @@ window.submitCommitment = function () {
     if (validateForm()) {
         request("POST", validateForm())
             .then(res => {
-                showMessage('Thank You !!')
+                showMessage('THANK YOU!')
             }, err => {
                 showMessage(`Ops !
                             Something went wrong.Please
@@ -59,10 +59,14 @@ function validateForm() {
     if (!emailReg.test(form['email'].value) || form['name'].value === "") {
         return false;
     }
-    return {
+    let obj = Object.assign({},{
         email: form.email.value,
         first_name: form.name.value
-    };
+    });
+    setTimeout(() => {
+        form.reset();
+    }, 1000);
+    return obj
 }
 
 export function showModal(bool = false) {
