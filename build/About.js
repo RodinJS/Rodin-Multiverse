@@ -64,13 +64,26 @@ System.register(['rodin/core', './DynamicText.js'], function (_export, _context)
                     this.rotation.y = Math.PI / 3;
                     this.mode = 'less';
 
+                    this.lastClicked = R.Time.now;
                     more.on(R.CONST.GAMEPAD_BUTTON_DOWN, () => {
+                        this.lastClicked = R.Time.now;
+                    });
+
+                    more.on(R.CONST.GAMEPAD_BUTTON_UP, () => {
+                        if (R.Time.now - this.lastClicked > 300) return;
+
                         if (this.started) return;
 
                         this.toggle();
                     });
 
                     less.on(R.CONST.GAMEPAD_BUTTON_DOWN, () => {
+                        this.lastClicked = R.Time.now;
+                    });
+
+                    less.on(R.CONST.GAMEPAD_BUTTON_UP, () => {
+                        if (R.Time.now - this.lastClicked > 300) return;
+
                         if (this.started) return;
 
                         this.toggle();
