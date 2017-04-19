@@ -78,6 +78,8 @@ setTimeout(() => {
 
 const responsive = () => {
     const img = document.getElementById('img');
+    if(!img)
+        return;
     const width = window.innerWidth;
     const height = window.innerHeight;
 

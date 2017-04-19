@@ -87,6 +87,7 @@ System.register(['rodin/core', './SkySphere.js', './Earth.js', './Father.js', '.
 
             const responsive = () => {
                 const img = document.getElementById('img');
+                if (!img) return;
                 const width = window.innerWidth;
                 const height = window.innerHeight;
 
