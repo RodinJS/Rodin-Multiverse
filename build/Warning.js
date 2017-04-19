@@ -23,7 +23,7 @@ System.register(['rodin/core', './commitment/commitment.js'], function (_export,
 
                     const messageMaterial = new THREE.MeshBasicMaterial({
                         side: THREE.DoubleSide,
-                        map: R.Loader.loadTexture('/metaverse/res/img/warning.png'),
+                        map: R.Loader.loadTexture('./res/img/warning.png'),
                         transparent: true
                     });
 

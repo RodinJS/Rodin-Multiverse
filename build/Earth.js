@@ -14,13 +14,13 @@ System.register(['rodin/core', './Warning.js', './Father.js'], function (_export
             class Earth extends R.Sculpt {
                 constructor() {
                     super();
-                    const globe = new R.Sculpt('/metaverse/res/models/earth/earth.obj');
+                    const globe = new R.Sculpt('./res/models/earth/earth.obj');
                     globe.on(R.CONST.READY, () => {
                         this.add(globe);
                     });
 
                     this.on(R.CONST.READY, () => {
-                        this.position.set(3, 1.6, 0);
+                        this.position.set(0, 1.6, -3);
                     });
 
                     globe.on(R.CONST.UPDATE, () => {
@@ -46,12 +46,11 @@ System.register(['rodin/core', './Warning.js', './Father.js'], function (_export
 
                     const pulseMaterial = new THREE.MeshBasicMaterial({
                         side: THREE.DoubleSide,
-                        map: R.Loader.loadTexture('/metaverse/res/img/pulse.png'),
+                        map: R.Loader.loadTexture('./res/img/pulse.png'),
                         transparent: true
                     });
 
                     const pulse = new R.Sculpt(new THREE.Mesh(new THREE.PlaneGeometry(1.5, .15), pulseMaterial));
-                    pulse.rotation.y = -Math.PI / 2;
                     pulse.position.set(0, -1.25, 0);
                     this.add(pulse);
 

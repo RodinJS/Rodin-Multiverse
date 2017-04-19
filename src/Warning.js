@@ -14,7 +14,7 @@ export class Warning extends R.Sculpt {
 
         const messageMaterial = new THREE.MeshBasicMaterial({
             side: THREE.DoubleSide,
-            map: R.Loader.loadTexture('/metaverse/res/img/warning.png'),
+            map: R.Loader.loadTexture('./res/img/warning.png'),
             transparent: true
         });
 

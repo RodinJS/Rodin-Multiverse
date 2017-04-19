@@ -11,7 +11,7 @@ System.register(['rodin/core'], function (_export, _context) {
                 constructor() {
                     const material = new THREE.MeshBasicMaterial({
                         side: THREE.DoubleSide,
-                        map: R.Loader.loadTexture('/metaverse/res/img/skySphere.jpg')
+                        map: R.Loader.loadTexture('./res/img/skySphere.jpg')
                     });
 
                     super(50, 20, 20, material);
