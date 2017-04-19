@@ -4,12 +4,13 @@
 <head>
     <title>Rodin | Simple</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
     <!--<link rel="stylesheet" href="/public/styles/loader.css">-->
     <!--<link rel="stylesheet" href="/public/styles/content.css">-->
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <!--<script src="/public/js/deviceCheck.js"></script>-->
     <link rel="stylesheet" href="public/styles/bootstrap.min.css">
     <link rel="stylesheet" href="public/styles/styles.css">
@@ -30,61 +31,64 @@
 
 <body>
 
-    <!--<div class="loader" id="loaderContent" style="display: none;">-->
-    <!--<img src="/public/images/loader-rodin-logo.png" alt="">-->
-    <!--<p class="text-loading">Loading ...</p>-->
-    <!--</div>-->
-    <!--<script>-->
-    <!--var loader = document.getElementById("loaderContent");-->
-    <!--function loadingRodin(inProgress = false) {-->
-    <!--return inProgress ? loader.style.display = "block" : loader.style.display = "none"-->
-    <!--}-->
-    <!--</script>-->
-    <div class="modal1" id="modal-commitment">
-        <div class="form-wrapper">
-            <div class="form-background"></div>
-            <div class="form-content">
-                <div class="title">
-                    <span>STAKE YOUR CLAME</span>
-                </div>
-                <form id="metaverseForm" name="metaverse_form">
-                    <div class="form-group1">
-                        <input type="text" name="name" value="" placeholder="Your Name">
-                    </div>
-                    <div class="form-group1 email-input">
-                        <input type="email" name="email" value="" placeholder="E-mail">
-                    </div>
-                    <div class="form-group1">
-                        <label for="">Let us know how much you are ready to stake</label>
-                        <input type="text" name="commitment" value="0" placeholder="$Commitment">
-                    </div>
-                    <div class="button-area">
-                        <button type="button" class="button-submit" onclick="submitCommitment()">CLAIM IT!</button>
-                    </div>
-                </form>
+<!--<div class="loader" id="loaderContent" style="display: none;">-->
+<!--<img src="/public/images/loader-rodin-logo.png" alt="">-->
+<!--<p class="text-loading">Loading ...</p>-->
+<!--</div>-->
+<!--<script>-->
+<!--var loader = document.getElementById("loaderContent");-->
+<!--function loadingRodin(inProgress = false) {-->
+<!--return inProgress ? loader.style.display = "block" : loader.style.display = "none"-->
+<!--}-->
+<!--</script>-->
+<div class="modal1" id="modal-commitment">
+    <div class="form-wrapper">
+        <div class="form-background"></div>
+        <div class="form-content">
+            <div class="title">
+                <span>STAKE YOUR CLAIM</span>
             </div>
+            <form id="metaverseForm" name="metaverse_form">
+                <div class="form-group1">
+                    <input type="text" name="name" value="" placeholder="Your Name">
+                </div>
+                <div class="form-group1 email-input">
+                    <input type="email" name="email" value="" placeholder="E-mail">
+                </div>
+                <div class="button-area">
+                    <button type="button" class="button-submit" onclick="submitCommitment()">CLAIM IT!</button>
+                </div>
+            </form>
+        </div>
+        <div class="message">
+            <h1 class="message-text"></h1>
+            <button type="button" onclick="closeModal();" class="button-close">Close</button>
         </div>
     </div>
-    <div class="message">
-    </div>
-    <script type="text/javascript" src="https://cdn.rodin.io/v0.0.4/vendor/vendor.js"></script>
-    <script type="text/javascript" src="systemjs/system.js"></script>
-    <script type="text/javascript" src="systemjs/config.js"></script>
-    <script>
-        System.import('build/index.js');
-    </script>
+</div>
 
-    <script type="text/javascript" src="vendor/NoSleep.min.js"></script>
-    <script>
-        const noSleep = new NoSleep();
+<script type="text/javascript" src="https://cdn.rodin.io/v0.0.4/vendor/vendor.js"></script>
+<script type="text/javascript" src="systemjs/system.js"></script>
+<script type="text/javascript" src="systemjs/config.js"></script>
+<script>
+    System.import('build/index.js');
+</script>
 
-        function enableNoSleep() {
-            noSleep.enable();
-            document.removeEventListener('click', enableNoSleep, false);
-        }
-        document.addEventListener('click', enableNoSleep, false);
-    </script>
+<script type="text/javascript" src="vendor/NoSleep.min.js"></script>
+<script>
+    const noSleep = new NoSleep();
 
+    function enableNoSleep() {
+        noSleep.enable();
+        document.removeEventListener('click', enableNoSleep, false);
+    }
+    document.addEventListener('click', enableNoSleep, false);
+</script>
+<script>
+    window.closeModal = function () {
+        document.getElementById('modal-commitment').style.display = "none";
+    }
+</script>
 </body>
 
 </html>

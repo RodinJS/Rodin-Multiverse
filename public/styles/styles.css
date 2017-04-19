@@ -25,6 +25,7 @@
      }
      
      .message {
+         display: none;
          text-align: center;
      }
      
@@ -112,9 +113,12 @@
          color: #008BF2;
          display: block;
      }
-     
+
+     .message-text {
+         padding: 30px;
+     }
      .button-area {
-         margin-top: 30px;
+         margin-bottom: 20px;
      }
      
      .button-submit:focus {
@@ -130,6 +134,17 @@
          background: #008BF2;
          color: #09192E;
          transition: 0.3s ease;
+     }
+     .button-close {
+         font-family: Roboto;
+         font-size: 20px;
+         border: none;
+         padding: 16px 51.5px;
+         border-radius: 28px;
+         background: #AAAAAA;
+         color: black;
+         transition: 0.3s ease;
+         margin-bottom: 20px;
      }
      
      .button-submit:hover {

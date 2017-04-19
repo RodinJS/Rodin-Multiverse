@@ -5,13 +5,12 @@ System.register(['../config/env.js'], function (_export, _context) {
 
 
     function showMessage(message) {
-        let messagepanel = document.getElementsByClassName('message')[0];
-        messagepanel.innerHTML = `<h1>${message}</h1>`;
-        setTimeout(() => {
-            messagepanel.style.display = "none";
-        }, 3000);
+        let formContent = document.getElementsByClassName('form-content');
+        let messagePanel = document.getElementsByClassName('message')[0];
+        formContent[0].style.display = "none";
+        messagePanel.style.display = "block";
+        messagePanel.childNodes[1].innerText = message;
     }
-
 
     function request(method, data) {
         return new Promise((resolve, reject) => {
@@ -48,13 +47,12 @@ System.register(['../config/env.js'], function (_export, _context) {
     function validateForm() {
         let form = document.forms["metaverseForm"];
         let emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!emailReg.test(form['email'].value) || form['name'].value == "" || !Number(form['commitment'].value)) {
+        if (!emailReg.test(form['email'].value) || form['name'].value === "") {
             return false;
         }
         return {
             email: form.email.value,
-            first_name: form.name.value,
-            price: form.commitment.value
+            first_name: form.name.value
         };
     }
 
@@ -70,13 +68,12 @@ System.register(['../config/env.js'], function (_export, _context) {
             env = _configEnvJs.env;
         }],
         execute: function () {
+
             window.submitCommitment = function () {
                 if (validateForm()) {
                     request("POST", validateForm()).then(res => {
-                        showModal(false);
                         showMessage('Thank You !!');
                     }, err => {
-                        showModal(false);
                         showMessage(`Ops !
                             Something went wrong.Please
                             try again later `);

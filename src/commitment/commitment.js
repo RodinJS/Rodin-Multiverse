@@ -1,25 +1,24 @@
-import { env } from '../config/env.js'
+import {env} from '../config/env.js';
 
-function showMessage(message) {
-    let messagepanel = document.getElementsByClassName('message')[0];
-    messagepanel.innerHTML = `<h1>${message}</h1>`
-    setTimeout(() => {
-        messagepanel.style.display = "none";
-    }, 3000)
-}
-window.submitCommitment = function() {
+window.submitCommitment = function () {
     if (validateForm()) {
         request("POST", validateForm())
             .then(res => {
-                showModal(false);
                 showMessage('Thank You !!')
             }, err => {
-                showModal(false);
                 showMessage(`Ops !
                             Something went wrong.Please
                             try again later `)
             })
     }
+};
+
+function showMessage(message) {
+    let formContent = document.getElementsByClassName('form-content');
+    let messagePanel = document.getElementsByClassName('message')[0];
+    formContent[0].style.display = "none";
+    messagePanel.style.display = "block";
+    messagePanel.childNodes[1].innerText = message;
 }
 
 function request(method, data) {
@@ -34,7 +33,7 @@ function request(method, data) {
         let body = encodStr.join('&');
         request.open(method, env.dev.base);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        request.onload = function() {
+        request.onload = function () {
             if (this.status >= 200 && this.status < 300) {
                 resolve(request.response);
             } else {
@@ -44,7 +43,7 @@ function request(method, data) {
                 });
             }
         };
-        request.onerror = function() {
+        request.onerror = function () {
             reject({
                 status: this.status,
                 statusText: request.statusText
@@ -57,13 +56,12 @@ function request(method, data) {
 function validateForm() {
     let form = document.forms["metaverseForm"];
     let emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!emailReg.test(form['email'].value) || form['name'].value == "" || !Number(form['commitment'].value)) {
+    if (!emailReg.test(form['email'].value) || form['name'].value === "") {
         return false;
     }
     return {
         email: form.email.value,
-        first_name: form.name.value,
-        price: form.commitment.value
+        first_name: form.name.value
     };
 }
 
