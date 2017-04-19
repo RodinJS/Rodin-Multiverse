@@ -5,6 +5,7 @@ window.submitCommitment = function () {
         request("POST", validateForm())
             .then(res => {
                 showMessage('THANK YOU!');
+
             }, err => {
                 showMessage(`PLEASE CHECK YOUR CONNECTION AND TRY AGAIN`);
             })

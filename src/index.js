@@ -3,10 +3,10 @@ import * as R from 'rodin/core';
 R.start();
 R.Scene.active._scene.remove(R.Scene.active._scene.children.filter(i => i.type === "AmbientLight")[0]);
 
-import { SkySphere } from './SkySphere.js';
-import { Earth } from './Earth.js';
-import { father } from './Father.js';
-import { About } from './About.js';
+import {SkySphere} from './SkySphere.js';
+import {Earth} from './Earth.js';
+import {father} from './Father.js';
+import {About} from './About.js';
 
 R.Scene.add(father);
 const skySphere = new SkySphere();
@@ -69,3 +69,34 @@ R.Scene.add(new R.Sculpt(ambientLight));
 //
 //     return yAngle;
 // };
+
+setTimeout(() => {
+    const intro = document.getElementById('intro');
+    intro.parentNode.removeChild(intro);
+}, 4000);
+
+
+const responsive = () => {
+    const img = document.getElementById('img');
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    let imgWidth = 0;
+    if (width < 1000 && width < height)
+        imgWidth = 40;
+    else if (width < 1000 && width > height)
+        imgWidth = 20;
+    else
+        imgWidth = 15;
+
+    const imgWidthPx = width * imgWidth / 100;
+
+    img.style.width = `${imgWidthPx}px`;
+    img.style.height = `${imgWidthPx}px`;
+    img.style['margin-top'] = `${-imgWidthPx / 2}px`;
+    img.style['margin-left'] = `${-imgWidthPx / 2}px`;
+    img.style.display = 'block';
+};
+
+responsive();
+window.addEventListener('resize', responsive);

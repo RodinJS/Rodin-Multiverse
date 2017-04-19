@@ -79,6 +79,31 @@ System.register(['rodin/core', './SkySphere.js', './Earth.js', './Father.js', '.
             //
             //     return yAngle;
             // };
+
+            setTimeout(() => {
+                const intro = document.getElementById('intro');
+                intro.parentNode.removeChild(intro);
+            }, 4000);
+
+            const responsive = () => {
+                const img = document.getElementById('img');
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+
+                let imgWidth = 0;
+                if (width < 1000 && width < height) imgWidth = 40;else if (width < 1000 && width > height) imgWidth = 20;else imgWidth = 15;
+
+                const imgWidthPx = width * imgWidth / 100;
+
+                img.style.width = `${imgWidthPx}px`;
+                img.style.height = `${imgWidthPx}px`;
+                img.style['margin-top'] = `${-imgWidthPx / 2}px`;
+                img.style['margin-left'] = `${-imgWidthPx / 2}px`;
+                img.style.display = 'block';
+            };
+
+            responsive();
+            window.addEventListener('resize', responsive);
         }
     };
 });

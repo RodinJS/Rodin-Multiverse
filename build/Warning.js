@@ -29,7 +29,6 @@ System.register(['rodin/core', './commitment/commitment.js'], function (_export,
 
                     const message = new R.Sculpt(new THREE.Mesh(new THREE.PlaneGeometry(2, 1.33), messageMaterial));
                     message.position.set(1.5, 1.6, 0);
-                    message.rotation.y = -Math.PI / 2;
                     this.add(message);
                 }
 

@@ -14,7 +14,7 @@ System.register(['rodin/core', './Warning.js', './Father.js'], function (_export
             class Earth extends R.Sculpt {
                 constructor() {
                     super();
-                    const globe = new R.Sculpt('./res/models/earth/earth.obj');
+                    const globe = new R.Sculpt('./res/models/earth1/earth.obj');
                     globe.on(R.CONST.READY, () => {
                         this.add(globe);
                     });
@@ -33,8 +33,6 @@ System.register(['rodin/core', './Warning.js', './Father.js'], function (_export
                     let lastDown = R.Time.now;
                     eventHandler.on(R.CONST.GAMEPAD_BUTTON_DOWN, evt => {
                         lastDown = R.Time.now;
-                        const warning = Warning.getInstance();
-                        father.add(warning);
                     });
 
                     eventHandler.on(R.CONST.GAMEPAD_BUTTON_UP, evt => {
