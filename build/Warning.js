@@ -42,7 +42,9 @@ System.register(['rodin/core', './commitment/commitment.js'], function (_export,
                         showModal(true);
                         document.addEventListener('modalClose', function (e) {
                             console.log(e);
-                            if (e.type === 'modalClose') {}
+                            if (e.type === 'modalClose') {
+                                listenerAdded = false;
+                            }
                         }, false);
                         // when modal closes, remove this listener
                     };

@@ -33,7 +33,9 @@ export class Warning extends R.Sculpt {
             showModal(true);
             document.addEventListener('modalClose', function(e) {
                 console.log(e)
-                if (e.type === 'modalClose') {}
+                if (e.type === 'modalClose') {
+                    listenerAdded = false;
+                }
             }, false);
             // when modal closes, remove this listener
         };
