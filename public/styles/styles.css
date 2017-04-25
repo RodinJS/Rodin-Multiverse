@@ -8,97 +8,19 @@
     src: url(../fonts/Roboto-Bold.ttf);
 }
 
-@media only screen and (orientation: landscape) and (min-width: 320px) and (max-width: 1024px) {
-    .form-wrapper {
-        width: 100% !important;
-        height: 100%;
-        margin: 0 !important;
-    }
-}
-
-@media only screen and (orientation: portrait) and (min-width: 320px) and (max-width: 1024px) {
-    .form-wrapper {
-        width: 100% !important;
-        height: 100%;
-        margin: 0 !important;
-    }
-}
-
-.close-x {
-    text-align: right;
-    float: right;
-    margin-right: 20px;
-    margin-top: 12px;
-    font-size: 18px;
-    color: #004E85;
-    font-weight: 600;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
-
-#messages {
-    display: none;
-    text-align: center;
-}
-
 .message {
-    text-align: center;
-    min-height: 383px;
-    max-height: 383px;
-}
-
-.modal1 {
     display: none;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    /*opacity: 0.8;*/
-    /*z-index: 2;*/
-}
-
-.form-wrapper {
-    width: 35%;
     text-align: center;
-    position: absolute;
-    margin: 5% 33%;
-    z-index: 100;
-    min-height: 383px;
-    display: block;
+    height: 100%;
+    width: 100%;
 }
 
 .title {
-    margin-top: 30px;
+    margin-top: 1.2em;
     color: #008BF2;
     font-size: 24px;
     margin-bottom: 30px;
     font-family: RobotoBold;
-}
-
-.form-content {
-    padding: 20px;
-}
-
-.form-background {
-    height: 100%;
-    width: 100%;
-    display: block;
-    background: #09192E;
-    opacity: 0.85;
-    position: absolute;
-    z-index: -1;
-    border-radius: 20px;
-}
-
-.form-group1 {
-    width: 100%;
-    padding-bottom: 2px;
-}
-
-.email-input {
-    padding-bottom: 30px;
 }
 
 .error {
@@ -112,7 +34,7 @@ input[type=email] {
     width: 100%;
     color: #008BF2;
     font-size: 21px;
-    padding: 14px;
+    padding: 0.6em;
     margin: 8px 0;
     display: inline-block;
     border: none;
@@ -135,23 +57,20 @@ label {
     color: #008BF2;
     display: block;
 }
-.modal-background {
-    background: black;
-    opacity: .5;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
+
 .message-text {
     color: #008BF2;
+    font-family: Roboto;
     vertical-align: middle;
-    font-size: 24px;
-    padding-top: 32%;
-    line-height: 36px;
+    font-size: 2em;
+    text-align: center;
+    margin: 0;
+    display: table-cell;
 }
 
 .button-area {
-    margin-bottom: 20px;
+    margin: 2em auto;
+    text-align: center;
 }
 
 .button-submit:focus {
@@ -169,31 +88,87 @@ label {
     transition: 0.3s ease;
 }
 
-.button-close {
-    font-family: Roboto;
-    font-size: 20px;
-    border: none;
-    padding: 16px 51.5px;
-    border-radius: 28px;
-    background: #AAAAAA;
-    color: black;
-    transition: 0.3s ease;
-    margin-bottom: 20px;
-}
-
 .button-submit:hover {
     color: white;
     background: #054071;
 }
-@media only screen and (orientation: landscape) and (min-width: 1368px) and (max-width: 1920px) {
-    .form-wrapper {
-        margin:13% 33%;
-    }
-    .message-text {
-        color: #008BF2;
+
+.cta {
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 6px;
+    color: tomato;
+    display: inline-block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 1em;
+    padding: .3em 1em;
+    text-decoration: none;
+}
+.cta:hover {
+    background-color: lightgrey;
+    color: slategrey;
+    text-decoration: none;
+}
+
+.modaloverlay {
+    background: rgba(0, 0, 0, 0.8);
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    pointer-events: all;
+    position: fixed;
+    right: 0;
+    top: 0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    z-index: 1;
+    display: none;
+}
+.modaloverlay:target {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 99999;
+}
+.modaloverlay .modal {
+    background: #09192E;;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+    padding: 1.25em;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 20px;
+}
+@media (min-width: 60em) {
+    .modaloverlay .modal {
+        border-radius: 20px;
+        height: 75%;
+        background: #09192E;;
+        margin: 6em auto;
+        max-height: 23em;
+        max-width: 27em;
+        width: 85%;
         vertical-align: middle;
-        font-size: 24px;
-        padding-top: 24%;
-        line-height: 36px;
     }
+}
+.modaloverlay .modal > iframe, .modaloverlay .modal > div {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+.modaloverlay .close {
+    color: #004E85;
+    font-size: 36px;
+    padding: 8px 12px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    text-decoration: none;
+    top: 0;
+    z-index: 1;
+    cursor: pointer;
 }
