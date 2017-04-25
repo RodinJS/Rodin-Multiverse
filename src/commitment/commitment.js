@@ -86,7 +86,6 @@ export function showModal(bool = false) {
     let modal = document.getElementById('modal-commitment');
     let closeModal = function (e) {
         if (e.srcElement.className === "modaloverlay") {
-            e.stopImmediatePropagation();
             modal.removeEventListener('click', closeModal);
             return showModal(false);
         }
@@ -100,7 +99,7 @@ export function showModal(bool = false) {
     };
     if (bool) {
         modal.addEventListener('click', closeModal);
-        modal.addEventListener('keypress', submitEvent, false);
+        modal.addEventListener('keypress', submitEvent);
     }
     return bool ? modal.style.display = "block" : modal.style.display = "none";
 }
