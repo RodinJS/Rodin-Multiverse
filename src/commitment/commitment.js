@@ -65,27 +65,31 @@ function request(method, data) {
 }
 
 function validateForm() {
+    let isValid = false;
     let form = document.forms["metaverseForm"];
     let emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!emailReg.test(form.email.value)) {
-        form.email.classList.add('error');
-        if (form.name.value === "") {
-            if (!form.name.classList.contains('error')) {
-                form.name.classList.add('error');
-            }
-        }
-        return
+    if (emailReg.test(form.email.value) && form.name.value !== "") {
+        isValid = true;
     } else {
-        form.email.classList.remove('error');
-        form.name.classList.remove('error');
+        if (!emailReg.test(form.email.value)) {
+            form.email.classList.add('error');
+        } else {
+            form.email.classList.remove('error');
+        }
+        if (form.name.value === "") {
+            form.name.classList.add('error');
+        } else {
+            form.name.classList.remove('error');
+        }
+        isValid = false;
     }
-    return form
+    return isValid ? form : isValid
 }
 
 export function showModal(bool = false) {
     let modal = document.getElementById('modal-commitment');
     let closeModal = function (e) {
-        if (e.srcElement.className === "modaloverlay") {
+        if (e.target.className === "modaloverlay") {
             modal.removeEventListener('click', closeModal);
             return showModal(false);
         }

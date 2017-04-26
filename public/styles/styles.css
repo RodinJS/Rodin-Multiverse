@@ -69,7 +69,7 @@ label {
 }
 
 .button-area {
-    margin: 2em auto;
+    margin: 1.6em auto;
     text-align: center;
 }
 
@@ -124,7 +124,7 @@ label {
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
-    z-index: 1;
+    z-index: 10000;
     display: none;
 }
 .modaloverlay:target {
@@ -143,6 +143,7 @@ label {
     -webkit-overflow-scrolling: touch;
     border-radius: 20px;
 }
+
 @media (min-width: 60em) {
     .modaloverlay .modal {
         border-radius: 20px;
@@ -153,6 +154,26 @@ label {
         max-width: 27em;
         width: 85%;
         vertical-align: middle;
+    }
+}
+@media (min-width: 30em) {
+    .button-area {
+        margin: .8em auto;
+        text-align: center;
+    }
+    input[type=text],
+    input[type=email] {
+        padding: 0.4em;
+    }
+}
+@media (min-width: 20em) {
+    .button-area {
+        margin: .8em auto;
+        text-align: center;
+    }
+    input[type=text],
+    input[type=email] {
+        padding: 0.4em;
     }
 }
 .modaloverlay .modal > iframe, .modaloverlay .modal > div {
